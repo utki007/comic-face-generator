@@ -4,3 +4,7 @@ Thumbs.db
 
 # data files
 data/
+
+# python cache files
+__pycache__/
+*.pyc
