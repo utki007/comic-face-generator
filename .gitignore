@@ -8,3 +8,18 @@ data/
 # python cache files
 __pycache__/
 *.pyc
+
+# model checkpoints
+checkpoints/
+
+# jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
