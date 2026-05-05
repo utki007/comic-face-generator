@@ -2,15 +2,38 @@
 .DS_Store
 Thumbs.db
 
+# node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.env
+.env.*
+dist/
+build/
+
 # data files
 data/
 
 # python cache files
 __pycache__/
 *.pyc
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage/
 
 # model checkpoints
 checkpoints/
+
+# server runtime files
+server/uploads/*
+server/outputs/*
+!server/uploads/.gitkeep
+!server/outputs/.gitkeep
 
 # jupyter notebook checkpoints
 .ipynb_checkpoints/
