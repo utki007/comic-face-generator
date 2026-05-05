@@ -63,5 +63,42 @@ Split: 80% train / 10% val / 10% test (≈8k / 1k / 1k).
 - Add attention modules, perceptual loss tuning, or progressive training.
 - Consider diffusion-based or stronger perceptual objectives for higher-fidelity outputs.
 
+## Face2Comic Web App
+
+This project includes a Node.js + Express MVC app with a minimal React UI that runs the
+pretrained pix2pix generator to create comic-style images from uploaded faces.
+
+### Setup
+
+1. Install Node dependencies:
+
+	```bash
+	npm install
+	```
+
+2. Install Python dependencies:
+
+	```bash
+	pip install -r requirements.txt
+	```
+
+3. Ensure the model checkpoint exists:
+
+	- Default: `checkpoints/pix2pix_best_epoch_066.pt`
+	- Override with `MODEL_CHECKPOINT=/path/to/checkpoint.pt`
+
+4. Start the server:
+
+	```bash
+	npm run dev
+	```
+
+Open `http://localhost:3000` and upload a face image.
+
+### Environment Variables
+
+- `MODEL_CHECKPOINT` — path to the generator checkpoint.
+- `PYTHON_BIN` — Python executable to run inference (default: `python3`).
+
 
 
