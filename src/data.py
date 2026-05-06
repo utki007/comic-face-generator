@@ -1,12 +1,50 @@
 from pathlib import Path
+from typing import Union
 
 import numpy as np
 import torch
+from PIL import Image
 from torch.utils.data import Dataset, DataLoader, Subset
 import albumentations as A
 from albumentations.pytorch import ToTensorV2
 
 from .config import NUM_WORKERS
+
+IMAGE_SIZE = 256
+
+
+def preprocess_for_inference(
+    image_or_path: Union[str, Path, Image.Image],
+    target_size: int = IMAGE_SIZE,
+) -> torch.Tensor:
+    """Load a real-life image and return a (3, target_size, target_size) tensor in [-1, 1].
+
+    Pipeline: center-crop square -> resize -> normalize.
+    This avoids aspect-ratio distortion on non-square inputs.
+
+    Args:
+        image_or_path: Path to the input image or a PIL image.
+        target_size: Output spatial resolution (square).
+    """
+    if isinstance(image_or_path, Image.Image):
+        img = image_or_path.convert("RGB")
+    else:
+        img = Image.open(image_or_path).convert("RGB")
+    img_np = np.asarray(img)
+    h, w = img_np.shape[:2]
+
+    # Center-crop to the largest square.
+    side = min(w, h)
+    left = (w - side) // 2
+    top = (h - side) // 2
+    img = img.crop((left, top, left + side, top + side))
+
+    img = img.resize((target_size, target_size), Image.LANCZOS)
+
+    arr = np.asarray(img, dtype=np.uint8).astype(np.float32) / 255.0
+    arr = arr * 2.0 - 1.0
+    arr = arr.transpose(2, 0, 1)
+    return torch.from_numpy(arr)
 
 
 class Face2ComicDataset(Dataset):
