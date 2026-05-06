@@ -8,6 +8,9 @@ from .models import Generator, Discriminator, init_weights
 bce = nn.BCEWithLogitsLoss()
 l1_loss = nn.L1Loss()
 
+# Discriminator target for real pairs and generator “real” target (e.g. 0.9 for label smoothing).
+REAL_LABEL = 1.0
+
 
 def make_models(lr: float, betas=(0.5, 0.999), device=None):
     """Build generator + discriminator with optimizers, apply weight init."""
@@ -38,7 +41,7 @@ def train_one_epoch(gen, disc, loader, opt_gen, opt_disc, lambda_l1, device):
 
         # Train Discriminator
         pred_real = disc(real, target)
-        loss_real = bce(pred_real, torch.ones_like(pred_real))
+        loss_real = bce(pred_real, torch.full_like(pred_real, REAL_LABEL))
 
         pred_fake = disc(real, fake.detach())
         loss_fake = bce(pred_fake, torch.zeros_like(pred_fake))
@@ -51,7 +54,7 @@ def train_one_epoch(gen, disc, loader, opt_gen, opt_disc, lambda_l1, device):
 
         # Train Generator
         pred_fake = disc(real, fake)
-        loss_g_gan = bce(pred_fake, torch.ones_like(pred_fake))
+        loss_g_gan = bce(pred_fake, torch.full_like(pred_fake, REAL_LABEL))
         loss_g_l1 = l1_loss(fake, target)
 
         loss_g = loss_g_gan + lambda_l1 * loss_g_l1
