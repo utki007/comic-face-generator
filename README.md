@@ -63,5 +63,28 @@ Split: 80% train / 10% val / 10% test (≈8k / 1k / 1k).
 - Add attention modules, perceptual loss tuning, or progressive training.
 - Consider diffusion-based or stronger perceptual objectives for higher-fidelity outputs.
 
+## Run the App (Upload → Comic)
+
+This repo includes a lightweight Gradio app that:
+
+- Takes an uploaded image
+- Applies the same preprocessing + enhancement presets used in the evaluation notebook
+- Runs the trained pix2pix generator from `checkpoints/pix2pix_best_epoch_181.pt`
+- Returns a single enhanced comic image (with download)
+
+### 1) Install dependencies
+
+```bash
+pip install -r requirements-app.txt
+```
+
+### 2) Start the app
+
+```bash
+python app.py
+```
+
+Then open the local URL printed in the terminal.
+
 
 

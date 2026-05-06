@@ -1,0 +1,7 @@
+# Minimal deps to run the Face2Comic Gradio app
+# (training/eval notebooks may require additional packages)
+
+gradio>=4.0
+pillow
+numpy
+torch
