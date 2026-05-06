@@ -29,6 +29,9 @@ coverage/
 # model checkpoints
 checkpoints/
 
+# face detection models
+models/
+
 # server runtime files
 server/uploads/*
 server/outputs/*
