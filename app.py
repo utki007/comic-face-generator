@@ -11,7 +11,7 @@ from src.inference import PRESETS, PresetName, load_model_bundle, run_inference
 
 
 REPO_ROOT = Path(__file__).resolve().parent
-CHECKPOINT_PATH = REPO_ROOT / "checkpoints" / "pix2pix_best_epoch_181.pt"
+CHECKPOINT_PATH = REPO_ROOT / "checkpoints" / "pix2pix_best_epoch_263.pt"
 
 
 @lru_cache(maxsize=1)
