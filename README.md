@@ -55,12 +55,12 @@ npm run dev
 
 ## a) Evaluations
 
-<img src="REPORT/Images/Picture5.png" width="400"/>
-<img src="REPORT/Images/Picture6.png" width="400"/>
+![training Curves](Report/Images/Picture5.png)
+![Comparison](Report/Images/Picture6.png)
 
 ## Image Generations
 
-<img src="REPORT/Images/Picture9.png" width="400"/>
+![test images](Report/Images/Picture9.png)
 
 # 4. Extra Criteria Pursued
 
@@ -76,7 +76,7 @@ Tracked G loss, D loss, validation L1, and LR with best-checkpoint saving and pe
 
 The React GUI lets users upload an image, auto crops and resizes it to 256×256, and sends it to a backend for instant comic generation with download, copy, and regenerate options. It also includes an optional enhancement toggle for improved preprocessing and postprocessing effects or a raw output mode.
 
-![Web UI](REPORT/Images/Picture4.png)
+![Web UI](Report/Images/Picture4.png)
 
 ## 5. Difficulties Faced & Solutions
 
