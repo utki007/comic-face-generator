@@ -1,0 +1,8 @@
+{
+  "name": "comic-face-generator",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.mjs"
+  }
+}

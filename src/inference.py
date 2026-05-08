@@ -128,15 +128,18 @@ def run_inference(
     preset: PresetName,
     gen: Generator,
     device: torch.device,
+    use_enhancement: bool = True,
 ) -> Image.Image:
     """Run Face2Comic inference and return the final enhanced comic as a PIL image."""
     if pil_img is None:
         raise ValueError("No image provided")
 
-    enhanced_input = enhance_input_for_model(pil_img, preset)
+    model_input = (
+        enhance_input_for_model(pil_img, preset) if use_enhancement else pil_img.convert("RGB")
+    )
 
     # preprocess_for_inference returns a (3,256,256) tensor in [-1,1]
-    x = preprocess_for_inference(enhanced_input).unsqueeze(0).to(device)
+    x = preprocess_for_inference(model_input).unsqueeze(0).to(device)
 
     with torch.inference_mode():
         fake = gen(x).squeeze(0)
@@ -144,5 +147,7 @@ def run_inference(
     comic_01 = denorm(fake)
     comic_pil = _tensor_to_pil_rgb_u8(comic_01)
 
+    if not use_enhancement:
+        return comic_pil
     comic_enhanced = enhance_generated_comic(comic_pil, preset)
     return comic_enhanced

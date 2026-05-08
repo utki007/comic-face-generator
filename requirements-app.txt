@@ -1,7 +1,9 @@
-# Minimal deps to run the Face2Comic Gradio app
+# Dependencies for Face2Comic inference API (FastAPI) + React frontend dev workflow
 # (training/eval notebooks may require additional packages)
 
-gradio>=4.0
 pillow
 numpy
 torch
+fastapi>=0.110
+uvicorn[standard]>=0.27
+python-multipart>=0.0.9
