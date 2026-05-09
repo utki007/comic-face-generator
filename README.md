@@ -54,7 +54,6 @@ npm run dev
 # 3. Results of the Model
 
 <img src="Report/Images/Picture9.png" width="500">
-<img src="Report/Images/Picture7.png" width="500">
 
 # 4. Extra Criteria Pursued
 
@@ -62,14 +61,7 @@ npm run dev
 
 Performed hyperparameter grid search for a subset of dataset (2000 train, 500 validation) over learning rate, batch size, and lambda_L1 across 27 configurations (10 epochs each). The best configuration used LR = 5e-4, Batch Size = 32, and lambda_L1 = 100, achieving a validation L1 loss of 0.2262. [Grid Search Samples](notebooks/Output/epoch_samples)
 
-## b) Metrics Training & Evaluation Tracking
-
-Tracked G loss, D loss, validation L1, and LR with best-checkpoint saving and periodic (5-epoch) checkpoints. Final evaluation used L1, MSE, PSNR, SSIM, LPIPS, and VGG distance, logged and visualized via CSV and training curves. Results show strong generalization with minimal train-test gap and stable perceptual and structural metrics.
-
-<img src="Report/Images/Picture5.png" width="600">
-<img src="Report/Images/Picture6.png" width="600">
-
-## c) Gallery GUI / Web Application
+## b) Gallery GUI / Web Application
 
 The React GUI lets users upload an image, auto crops and resizes it to 256×256, and sends it to a backend for instant comic generation with download, copy, and regenerate options. It also includes an optional enhancement toggle for improved preprocessing and postprocessing effects or a raw output mode.
 
