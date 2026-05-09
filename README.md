@@ -34,6 +34,11 @@ The project also evaluates real world generalization and includes a lightweight 
 
 # 2. Installation & run instructions.
 
+## Model
+
+- Download dataset from [Google Drive](https://drive.google.com/drive/folders/1JX1z6J0goF54lWUZCl-N77aN9lusY3ES?usp=sharing)
+- Run [2.   Preprocessing.ipynb](notebooks/2.%20%20%20Preprocessing.ipynb), [3.   Hyperparameter Tuning.ipynb](notebooks/3.%20%20%20Hyperparameter%20Tuning.ipynb), [4.   Model Training.ipynb](notebooks/4.%20%20%20Model%20Training.ipynb) & [5.   Evaluation.ipynb](notebooks/5.%20%20%20Evaluation.ipynb) in order.
+
 ## Frontend
 
 From the repository root (runs on epoch 263):
@@ -46,37 +51,29 @@ npm run dev
 
 [Inference.py](src/inference.py) is being used to run my frontend model end-to-end.
 
-## Model
-
-- Download dataset from [Google Drive](https://drive.google.com/drive/folders/1JX1z6J0goF54lWUZCl-N77aN9lusY3ES?usp=sharing)
-- Run [2.   Preprocessing.ipynb](notebooks/2.%20%20%20Preprocessing.ipynb), [3.   Hyperparameter Tuning.ipynb](notebooks/3.%20%20%20Hyperparameter%20Tuning.ipynb), [4.   Model Training.ipynb](notebooks/4.%20%20%20Model%20Training.ipynb) & [5.   Evaluation.ipynb](notebooks/5.%20%20%20Evaluation.ipynb) in order.
-
 # 3. Results of the Model
 
-## a) Evaluations
-
-![training Curves](Report/Images/Picture5.png)
-![Comparison](Report/Images/Picture6.png)
-
-## Image Generations
-
-![test images](Report/Images/Picture9.png)
+<img src="Report/Images/Picture9.png" width="500">
+<img src="Report/Images/Picture7.png" width="500">
 
 # 4. Extra Criteria Pursued
 
 ## a) Hyperparameter Tuning
 
-Performed hyperparameter grid search for a subset of dataset (2000 train, 500 validation) over learning rate, batch size, and lambda_L1 across 27 configurations (10 epochs each). The best configuration used LR = 5e-4, Batch Size = 32, and lambda_L1 = 100, achieving a validation L1 loss of 0.2262. [Images](notebooks/Output/epoch_samples)
+Performed hyperparameter grid search for a subset of dataset (2000 train, 500 validation) over learning rate, batch size, and lambda_L1 across 27 configurations (10 epochs each). The best configuration used LR = 5e-4, Batch Size = 32, and lambda_L1 = 100, achieving a validation L1 loss of 0.2262. [Grid Search Samples](notebooks/Output/epoch_samples)
 
 ## b) Metrics Training & Evaluation Tracking
 
 Tracked G loss, D loss, validation L1, and LR with best-checkpoint saving and periodic (5-epoch) checkpoints. Final evaluation used L1, MSE, PSNR, SSIM, LPIPS, and VGG distance, logged and visualized via CSV and training curves. Results show strong generalization with minimal train-test gap and stable perceptual and structural metrics.
 
+<img src="Report/Images/Picture5.png" width="600">
+<img src="Report/Images/Picture6.png" width="600">
+
 ## c) Gallery GUI / Web Application
 
 The React GUI lets users upload an image, auto crops and resizes it to 256×256, and sends it to a backend for instant comic generation with download, copy, and regenerate options. It also includes an optional enhancement toggle for improved preprocessing and postprocessing effects or a raw output mode.
 
-![Web UI](Report/Images/Picture4.png)
+<img src="Report/Images/Picture4.png" width="600">
 
 ## 5. Difficulties Faced & Solutions
 
